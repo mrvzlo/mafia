@@ -13,7 +13,7 @@ import MapModel from './map.model';
 })
 export default class Map extends Vue {
    map = new MapModel();
-   tileSize = Math.min(100, window.innerWidth / 10);
+   tileSize = Math.min(100, window.innerWidth / 16);
    totalWidth = 0;
    totalHeight = 0;
 
@@ -21,7 +21,6 @@ export default class Map extends Vue {
       this.map.setup();
       this.totalWidth = this.tileSize * this.map.width;
       this.totalHeight = this.tileSize * this.map.height;
-      console.log(this.map);
    }
 }
 </script>
