@@ -1,0 +1,15 @@
+.confirm-btn {
+   border-radius: 50%;
+   border: solid 1px black;
+   width: 30px;
+   height: 30px;
+   line-height: 30px;
+   text-align: center;
+   margin: auto;
+   cursor: pointer;
+
+   &:hover {
+      background-color: #cfc;
+      border-color: #262;
+   }
+}

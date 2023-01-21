@@ -23,15 +23,15 @@ export default class GameSetupService {
 
    private getPlayerHand(): PlayerCardModel[] {
       return this.getCards()
-         .filter((x) => !x.isPlayer)
+         .filter((x) => !!x.player)
          .map((card) => new PlayerCardModel(card));
    }
 
    private getNeutralHand(): CardModel[] {
       return this.getCards()
-         .filter((x) => !!x.isPlayer)
+         .filter((x) => !x.player)
          .map((card) => new CardModel(card));
    }
 
-   public getCards = (): ICard[] => require('@/assets/json/cards.json');
+   private getCards = (): ICard[] => require('@/assets/json/cards.json');
 }

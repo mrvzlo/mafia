@@ -3,16 +3,16 @@
 </style>
 
 <template>
-   <Map />
+   <Game />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import Map from './components/map/Map.vue';
+import Game from './components/game.vue';
 
 @Options({
    components: {
-      Map,
+      Game,
    },
 })
 export default class App extends Vue {}

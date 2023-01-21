@@ -7,7 +7,7 @@ export default class PlayerCardModel extends CardModel {
    isBlue = false;
    maxEvents = 1;
    reserved = false;
-   pickedRound = 0;
+   pickedRound = -1;
 
    constructor(data: ICard) {
       super(data);

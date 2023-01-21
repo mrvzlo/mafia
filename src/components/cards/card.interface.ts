@@ -7,5 +7,5 @@ export default interface ICard {
    isBlue: boolean;
    events: IEvent[];
    maxEvents: number;
-   isPlayer: boolean;
+   player: boolean;
 }

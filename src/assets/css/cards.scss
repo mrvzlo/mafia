@@ -1,0 +1,98 @@
+.hand-container {
+   height: 25%;
+   display: flex;
+}
+
+.hand {
+   margin: 15px;
+   margin-top: auto;
+   display: flex;
+   flex-wrap: wrap;
+   text-align: center;
+   justify-content: center;
+   gap: 15px;
+}
+
+.card {
+   width: calc((100% - 300px) / 6);
+   padding: 15px;
+   border: solid 1px black;
+   height: 40px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 10px;
+   background-image: linear-gradient(45deg, #cfd9df 0%, #e2ebf0 100%);
+   text-shadow: 0 0 2px #fff;
+   align-self: flex-end;
+   position: relative;
+
+   &:hover {
+      .stage,
+      .desc {
+         display: block;
+      }
+   }
+
+   &.reserved {
+      opacity: 0.5;
+   }
+}
+
+.stage,
+.desc {
+   display: none;
+   position: absolute;
+}
+
+.desc {
+   bottom: 100%;
+   padding: 15px;
+   background: #eef;
+   border: solid 1px black;
+   border-radius: 10px;
+   min-height: 50px;
+
+   hr {
+      margin: 4px;
+   }
+}
+
+.stage {
+   $size: 24px;
+   top: 0;
+   background: #eef;
+   border-radius: 50%;
+   width: $size;
+   height: $size;
+   line-height: $size;
+   border: solid 1px black;
+   text-align: center;
+   cursor: pointer;
+   transform: translate(-50%, -$size/2);
+
+   &.stage-1 {
+      left: calc(50% - 40px);
+   }
+
+   &.stage-2 {
+      left: calc(50%);
+   }
+
+   &.stage-3 {
+      left: calc(50% + 40px);
+   }
+
+   &:not(.active).disabled {
+      opacity: 0.5;
+   }
+
+   &.active {
+      display: block;
+   }
+
+   &.active,
+   &:not(.disabled):hover {
+      background-color: #fec;
+   }
+}

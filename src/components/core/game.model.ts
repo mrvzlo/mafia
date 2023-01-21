@@ -19,5 +19,9 @@ export default class GameModel {
 
    neutralCards: CardModel[] = [];
 
-   constructor() {}
+   mainPlayer?: PlayerModel;
+
+   setPlayer(id: number) {
+      this.mainPlayer = this.players[id];
+   }
 }
