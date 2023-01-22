@@ -1,5 +1,6 @@
 import { GameStageType } from '../game-stage.type';
 import ICard from './card.interface';
+import IMap from './map.interface';
 import IPlayer from './player.interface';
 import ReservedCardModel from './reserved-card.interface';
 
@@ -19,4 +20,5 @@ export default interface IGame {
    neutralCards: ICard[];
 
    mainPlayer?: IPlayer;
+   map: IMap;
 }

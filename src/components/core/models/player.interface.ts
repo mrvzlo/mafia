@@ -10,4 +10,9 @@ export default interface IPlayer {
    color: string;
    heros: IHero[];
    controlType: ControlType;
+
+   money?: number;
+   influence?: number;
+   votes?: number;
+   helpers?: number;
 }

@@ -19,7 +19,13 @@
       :style="`--core-r:${game.mainPlayer?.color[0]};--core-g:${game.mainPlayer?.color[1]};--core-b:${game.mainPlayer?.color[2]};`"
    >
       <div class="stats">
-         <h3>{{ $t(`family.${game.mainPlayer?.id}.don`) }} {{ $t(`family.${game.mainPlayer?.id}.name`) }}</h3>
+         <div class="row">
+            <div class="influence">{{ game.mainPlayer.influence }}</div>
+            <div class="money">{{ game.mainPlayer.money }}$</div>
+            <h3>{{ $t(`family.${game.mainPlayer?.id}.don`) }} {{ $t(`family.${game.mainPlayer?.id}.name`) }}</h3>
+            <div class="votes">{{ game.mainPlayer.votes }}</div>
+            <div class="helpers">{{ game.mainPlayer.helpers }}</div>
+         </div>
          <div class="capo">
             <div v-for="hero in game.mainPlayer?.heros" :key="hero.id" class="block">
                <div class="symbol left">{{ symbols[hero.id] }}</div>
@@ -29,7 +35,7 @@
          </div>
       </div>
       <div class="mt-auto mb-auto">
-         <Map />
+         <Map :map="game.map" />
       </div>
       <div class="hand-container">
          <div class="row" v-if="game.stage === gameStages.Draft">
@@ -69,6 +75,10 @@ const acceptPlayerCard = (cards: IReservedCard[]): void => {
    if (game.players.some((x) => !x.draftFinished && x.controlType !== 'None')) return;
    game.stage = GameStageType.ResolveFirst;
    animateResolve();
+};
+
+const animateBankrupt = (): void => {
+   gameService.bankrupt(game);
 };
 
 const animateResolve = (): void => {

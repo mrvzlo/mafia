@@ -29,3 +29,44 @@
       }
    }
 }
+
+.influence,
+.votes,
+.money,
+.strength,
+.helpers {
+   $size: 24px;
+   width: $size * 1.5;
+   height: $size;
+   line-height: $size;
+   border: solid 1px black;
+   margin: auto 0;
+   text-shadow: 0 0 2px #000;
+   color: #fff;
+   text-align: center;
+}
+
+.money {
+   background: #8b6;
+   border-color: #141;
+}
+
+.votes {
+   background: #68b;
+   border-color: #114;
+}
+
+.helpers {
+   background: #a7a;
+   border-color: #411;
+}
+
+.influence {
+   background: #666;
+   border-color: #111;
+}
+
+.strength {
+   background: #b86;
+   border-color: #411;
+}
