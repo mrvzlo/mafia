@@ -1,4 +1,4 @@
-import IEvent from '../events/event.interface';
+import IEvent from '../../events/event.interface';
 
 export default interface ICard {
    id: number;

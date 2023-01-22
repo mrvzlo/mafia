@@ -1,11 +1,11 @@
 <template>
    <div v-if="!game.mainPlayer" class="grid">
-      <h2>{{ $t('choose_color') }}</h2>
+      <h2>{{ $t('choose_color') }} {{ game.mainPlayer }}</h2>
       <div class="row color-pick">
          <div
             class="card card-wide block card-button"
             v-for="(color, index) in colors"
-            v-on:click="chooseColor(color)"
+            v-on:click="chooseColor(index)"
             :key="index"
             :style="`--core-r:${color[0]};--core-g:${color[1]};--core-b:${color[2]};`"
          >
@@ -39,45 +39,39 @@
    </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 import GameSetupService from './core/game-setup.service';
+import CardControlService from './core/card-control.service';
 import { GameStageType } from './core/game-stage.type';
-import GameModel from './core/game.model';
 import Map from './map/map.vue';
 import Hand from './cards/hand.vue';
-import ReservedCardModel from './cards/reserved-card.model';
-import Colors from './core/colors.enum';
+import { Colors } from './core/colors.enum';
+import IReservedCard from './core/models/reserved-card.interface';
+import { reactive } from 'vue';
 
-@Options({
-   components: {
-      Map,
-      Hand,
-   },
-})
-export default class Game extends Vue {
-   game = new GameModel();
-   gameStages = GameStageType;
-   colors = new Colors().all();
-   symbols = ['♠', '♥', '♣', '♦'];
+const gameService = new GameSetupService();
+const game = reactive(gameService.setupGame());
+const gameStages = GameStageType;
+const colors = Object.values(Colors);
+const symbols = ['♠', '♥', '♣', '♦'];
+const cardService = new CardControlService();
 
-   created() {
-      const service = new GameSetupService();
-      this.game = service.setup(1);
-   }
+const chooseColor = (index: number): void => {
+   gameService.setupPlayer(game, index, 'Main');
+};
 
-   chooseColor(color: number[]) {
-      this.game.players[0].color = color;
-      this.game.setPlayer(0);
-   }
+const acceptPlayerCard = (cards: IReservedCard[]): void => {
+   console.log(2, game.players);
+   game.firstRound.push(...cards.filter((x) => x.stage === 0));
+   game.secondRound.push(...cards.filter((x) => x.stage === 1));
+   game.thirdRound.push(...cards.filter((x) => x.stage === 2));
 
-   acceptPlayerCard(cards: ReservedCardModel[]) {
-      this.game.firstRound.push(...cards.filter((x) => x.round === 0));
-      this.game.secondRound.push(...cards.filter((x) => x.round === 1));
-      this.game.thirdRound.push(...cards.filter((x) => x.round === 2));
+   if (game.players.some((x) => !x.draftFinished && x.controlType !== 'None')) return;
+   game.stage = GameStageType.ResolveFirst;
+   animateResolve();
+};
 
-      if (this.game.players.some((x) => !x.draftFinished)) return;
-      this.game.stage = GameStageType.Resolve;
-   }
-}
+const animateResolve = (): void => {
+   const card = cardService.getCardToResolve(game);
+};
 </script>

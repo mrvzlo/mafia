@@ -11,7 +11,7 @@
 
          <div v-for="i in 3" :key="i">
             <div
-               :class="'stage stage-' + i + (card.pickedRound === i - 1 ? ' active' : '') + (player.left[i - 1] > 0 ? '' : ' disabled')"
+               :class="'stage stage-' + i + (card.pickedStage === i - 1 ? ' active' : '') + (player.left[i - 1] > 0 ? '' : ' disabled')"
                v-on:click="pick(card.id, i - 1)"
             >
                {{ i }}
@@ -21,28 +21,30 @@
    </div>
 </template>
 
-<script lang="ts">
-import { prop, Vue } from 'vue-class-component';
-import PlayerModel from '../core/player.model';
-import ReservedCardModel from './reserved-card.model';
+<script setup lang="ts">
+import IPlayer from '../core/models/player.interface';
+import ReservedCardModel from '../core/models/reserved-card.interface';
+import PlayerDraftService from '../core/player-draft.service';
+import { defineProps } from 'vue';
 
-class Props {
-   player: PlayerModel = prop({ required: true });
-   confirmDelegate: (cards: ReservedCardModel[]) => void = prop({ required: true });
-}
+const props = defineProps<{
+   player: IPlayer;
+   confirmDelegate: (cards: ReservedCardModel[]) => void;
+}>();
 
-export default class Hand extends Vue.with(Props) {
-   pick(id: number, stage: number) {
-      this.player.pick(id, stage);
-   }
+const service = new PlayerDraftService(props.player);
+service.recalcLeft();
 
-   confirm() {
-      const confirmed = this.player.confirmPicked();
-      this.confirmDelegate(confirmed);
-   }
+const pick = (id: number, stage: number) => {
+   service.pick(id, stage);
+};
 
-   isHandFull(): boolean {
-      return this.player.left.every((x) => x === 0) || this.player.hand.every((x) => x.reserved || x.pickedRound >= 0);
-   }
-}
+const confirm = () => {
+   const confirmed = service.confirmPicked();
+   props.confirmDelegate(confirmed);
+};
+
+const isHandFull = (): boolean => {
+   return props.player.left.every((x) => x === 0) || props.player.hand.every((x) => x.reserved || x.pickedStage !== undefined);
+};
 </script>

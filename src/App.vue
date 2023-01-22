@@ -6,14 +6,6 @@
    <Game />
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 import Game from './components/game.vue';
-
-@Options({
-   components: {
-      Game,
-   },
-})
-export default class App extends Vue {}
 </script>
