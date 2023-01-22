@@ -4,26 +4,54 @@
    flex-wrap: wrap;
    background-size: contain;
    margin: 15px;
-}
+   border: solid 4px #000;
+   position: relative;
 
-.poor.s,
-.poor.n {
-   background-image: url('~@/assets/images/poor_s.svg');
-   .small {
-      top: 20%;
+   .confirm-btn,
+   .message {
+      transform: translateX(-50%);
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateX(-50%);
+      left: 50%;
+   }
+
+   .message {
+      width: 400px;
+      text-align: center;
+      top: 25%;
+   }
+
+   .confirm-btn {
+      top: calc(25% + 35px);
    }
 }
 
-.poor {
+.tile,
+.tile svg {
    width: var(--size);
    height: var(--size);
    background-size: contain;
    position: relative;
 }
 
+.tile.empty {
+   filter: grayscale(1);
+}
+
+.tile.family {
+   .dark {
+      fill: rgb(calc(var(--core-r) * 10 + 80), calc(var(--core-g) * 10 + 80), calc(var(--core-b) * 10 + 80));
+   }
+   .light {
+      fill: rgb(calc(var(--core-r) * 10 + 150), calc(var(--core-g) * 10 + 150), calc(var(--core-b) * 10 + 150));
+   }
+}
+
 .money.small,
 .strength.small {
    position: absolute;
+   top: 20%;
    width: 18px;
    height: 14px;
    line-height: 14px;

@@ -58,8 +58,4 @@ export default class GameSetupService {
    }
 
    private getCards = (): ICard[] => require('@/assets/json/cards.json');
-
-   bankrupt(game: IGame) {
-      const toRemove = Shuffle(game.map.inner as []);
-   }
 }

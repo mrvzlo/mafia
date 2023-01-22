@@ -35,7 +35,7 @@
          </div>
       </div>
       <div class="mt-auto mb-auto">
-         <Map :map="game.map" />
+         <Map :game="game" />
       </div>
       <div class="hand-container">
          <div class="row" v-if="game.stage === gameStages.Draft">
@@ -67,7 +67,6 @@ const chooseColor = (index: number): void => {
 };
 
 const acceptPlayerCard = (cards: IReservedCard[]): void => {
-   console.log(2, game.players);
    game.firstRound.push(...cards.filter((x) => x.stage === 0));
    game.secondRound.push(...cards.filter((x) => x.stage === 1));
    game.thirdRound.push(...cards.filter((x) => x.stage === 2));
@@ -75,10 +74,6 @@ const acceptPlayerCard = (cards: IReservedCard[]): void => {
    if (game.players.some((x) => !x.draftFinished && x.controlType !== 'None')) return;
    game.stage = GameStageType.ResolveFirst;
    animateResolve();
-};
-
-const animateBankrupt = (): void => {
-   gameService.bankrupt(game);
 };
 
 const animateResolve = (): void => {
