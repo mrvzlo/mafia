@@ -1,12 +1,20 @@
 import PlayerCardModel from '../cards/player-card.model';
 import ReservedCardModel from '../cards/reserved-card.model';
+import HeroModel from './hero.model';
 
 export default class PlayerModel {
    hand: PlayerCardModel[] = [];
    left: number[] = [];
    draftFinished = false;
+   color: number[] = [];
+   heros: HeroModel[] = [];
 
-   constructor(private readonly id: number) {}
+   constructor(public readonly id: number) {
+      this.heros.push(new HeroModel(0));
+      this.heros.push(new HeroModel(1));
+      this.heros.push(new HeroModel(2));
+      this.heros.push(new HeroModel(3));
+   }
 
    giveHand(hand: PlayerCardModel[]) {
       this.hand = hand.slice(0);

@@ -1,9 +1,9 @@
 <template>
    <div class="w-100" v-if="!player.draftFinished">
       <div v-if="isHandFull()" class="confirm-btn" v-on:click="confirm()">✔️</div>
-      <div v-else>{{ $t('pick_cards') }}</div>
+      <div v-else class="fs-20">{{ $t('pick_cards') }}</div>
    </div>
-   <div v-for="(card, index) in player.hand" :key="index" :class="'card ' + (card.reserved ? 'reserved' : '')">
+   <div v-for="(card, index) in player.hand" :key="index" :class="'card block ' + (card.reserved ? 'reserved' : '')">
       <h3>{{ $t(`card_names.${card.id}`) }}</h3>
 
       <template v-if="!card.reserved && !player.draftFinished">

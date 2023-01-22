@@ -1,4 +1,5 @@
 {
+   "choose_color": "Выберите свой цвет",
    "card_names": [
       "Сбор дани",
       "Сбор дани",
@@ -42,5 +43,38 @@
       "В город приезжает гость, дон с наибольшим значением кармы выбирает к кому он направится.",
       "В город приезжает гость, дон с наибольшим значением кармы выбирает к кому он направится."
    ],
-   "pick_cards": "Выберите по 2 карты действий на утро, день и вечер."
+   "pick_cards": "Выберите по 2 карты действий на утро, день и вечер.",
+   "ping": "pong",
+   "family": [
+      {
+         "don": "Don Adreano",
+         "name": "Salvatore",
+         "capo": ["Benni", "Franceso", "Mirabella", "Kuzko"]
+      },
+      {
+         "don": "Don Adreano",
+         "name": "Salvatore",
+         "capo": ["Benni", "Franceso", "Mirabella", "Kuzko"]
+      },
+      {
+         "don": "Don Adreano",
+         "name": "Salvatore",
+         "capo": ["Benni", "Franceso", "Mirabella", "Kuzko"]
+      },
+      {
+         "don": "Don Adreano",
+         "name": "Salvatore",
+         "capo": ["Benni", "Franceso", "Mirabella", "Kuzko"]
+      },
+      {
+         "don": "Don Adreano",
+         "name": "Salvatore",
+         "capo": ["Benni", "Franceso", "Mirabella", "Kuzko"]
+      },
+      {
+         "don": "Don Adreano",
+         "name": "Salvatore",
+         "capo": ["Benni", "Franceso", "Mirabella", "Kuzko"]
+      }
+   ]
 }

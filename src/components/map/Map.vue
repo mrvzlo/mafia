@@ -1,6 +1,6 @@
 <template>
-   <div class="city" :style="`width: ${totalWidth}px; height: ${totalHeight}px`">
-      <div v-for="model in map.inner" v-bind:key="model" :class="'poor ' + model?.directionClass" :style="'--size:' + tileSize + 'px'"></div>
+   <div class="city" :style="`width: ${totalWidth}px; height: ${totalHeight}px; --size:${tileSize}px`">
+      <div v-for="(model, index) in map.inner" :key="index" :class="'poor ' + model?.directionClass"></div>
    </div>
 </template>
 

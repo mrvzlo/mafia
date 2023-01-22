@@ -1,16 +1,16 @@
 .city {
-   background-image: url('~@/assets/images/roads.png');
+   background-image: url('~@/assets/images/road.svg');
    display: flex;
    flex-wrap: wrap;
    background-size: contain;
 }
 
 .poor.n {
-   background-image: url('~@/assets/images/poor_n.png');
+   background-image: url('~@/assets/images/poor_n.svg');
 }
 
 .poor.s {
-   background-image: url('~@/assets/images/poor_s.png');
+   background-image: url('~@/assets/images/poor_s.svg');
 }
 
 .poor {
